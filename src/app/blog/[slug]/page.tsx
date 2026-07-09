@@ -49,9 +49,11 @@ export default async function BlogPostPage({ params }: Params) {
       </section>
       <section>
         <div className="mx-auto max-w-6xl px-4 py-10">
-          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeSlug]} className="space-y-6 text-sm text-slate-700">
-            {post.content}
-          </ReactMarkdown>
+          <div className="space-y-6 text-sm text-slate-200">
+            <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeSlug]}>
+              {post.content}
+            </ReactMarkdown>
+          </div>
         </div>
       </section>
     </article>
