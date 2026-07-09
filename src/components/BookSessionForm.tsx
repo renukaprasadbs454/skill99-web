@@ -31,6 +31,16 @@ export function BookSessionForm() {
     defaultValues: { botField: "" },
   });
 
+  const fields = [
+    { label: "Name", name: "name" },
+    { label: "Phone", name: "phone" },
+    { label: "Email", name: "email" },
+    { label: "College", name: "college" },
+    { label: "Course", name: "course" },
+    { label: "Graduation Year", name: "graduationYear" },
+    { label: "State", name: "state" },
+  ] as const;
+
   const onSubmit = async (payload: BookFormValues) => {
     setStatus("loading");
     try {
@@ -56,15 +66,7 @@ export function BookSessionForm() {
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 rounded-3xl border border-slate-200 bg-white p-6 shadow-lg">
       <input type="hidden" {...register("botField")} />
       <div className="grid gap-4 md:grid-cols-2">
-        {[
-          { label: "Name", name: "name" },
-          { label: "Phone", name: "phone" },
-          { label: "Email", name: "email" },
-          { label: "College", name: "college" },
-          { label: "Course", name: "course" },
-          { label: "Graduation Year", name: "graduationYear" },
-          { label: "State", name: "state" },
-        ].map((field) => (
+        {fields.map((field) => (
           <label key={field.name} className="flex flex-col text-sm text-slate-600">
             <span className="text-xs font-semibold text-slate-500">{field.label}</span>
             <input
