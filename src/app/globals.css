@@ -1,26 +1,117 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #080b15;
+  --foreground: #f8fbff;
+  --primary: #2f8dfa;
+  --secondary: #ae5bff;
+  --accent: #ff8c3e;
+  --muted: #9aa5c1;
+  --card: rgba(15, 23, 42, 0.85);
+  --glass: rgba(255, 255, 255, 0.12);
+  --noise: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
+  color-scheme: dark;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
+  margin: 0;
+  min-height: 100vh;
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans);
+  line-height: 1.6;
+  background-image:
+    radial-gradient(circle at 20% -20%, rgba(47, 141, 250, 0.25), transparent 45%),
+    radial-gradient(circle at 80% 0%, rgba(174, 91, 255, 0.25), transparent 40%),
+    radial-gradient(circle at 50% 70%, rgba(248, 140, 62, 0.18), transparent 40%);
+}
+
+.theme-accent {
+  background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.35), transparent 45%),
+    radial-gradient(circle at 20% 20%, rgba(249, 115, 22, 0.25), transparent 30%);
+  background-blend-mode: screen;
+}
+
+a {
+  color: inherit;
+}
+
+section {
+  padding: 4rem 1.25rem;
+}
+
+.glass-card {
+  background: var(--glass);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.15);
+  border-radius: 1.5rem;
+  backdrop-filter: blur(20px);
+}
+
+.focus-outline:focus-visible {
+  outline: 3px solid var(--secondary);
+  outline-offset: 3px;
+}
+
+@media (min-width: 768px) {
+  section {
+    padding: 5rem 3rem;
+  }
+}
+
+.mesh-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 50 L100 50 M50 0 L50 100' stroke='%23FFFFFF' stroke-width='0.5' opacity='0.08'/%3E%3C/svg%3E");
+  opacity: 0.4;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.float {
+  animation: float 8s ease-in-out infinite both;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.blob {
+  animation: blob 12s ease-in-out infinite;
+}
+
+@keyframes blob {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.2) translate(10px, -10px);
+  }
+  100% {
+    transform: scale(1) translate(0, 0);
+  }
+}
+
+.section-panel {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(6, 7, 15, 0.9));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 36px;
+  padding: 3rem;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.6);
+  position: relative;
+  overflow: hidden;
 }
